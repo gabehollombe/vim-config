@@ -225,3 +225,12 @@
 " Jade Highlighting"
   Bundle "git://github.com/digitaltoad/vim-jade.git"
   autocmd BufNewFile,BufRead *.jade set filetype=jade
+
+" Easy async RSpec running
+Bundle 'thoughtbot/vim-rspec'
+Bundle "git://github.com/tpope/vim-dispatch.git"
+let g:rspec_command = "Dispatch rspec --format=progress --no-profile {spec}"
+nmap <Leader>rc :wa<CR> :call RunCurrentSpecFile()<CR>
+nmap <Leader>rn :wa<CR> :call RunNearestSpec()<CR>
+nmap <Leader>rl :wa<CR> :call RunLastSpec()<CR>
+nmap <Leader>ra :wa<CR> :call RunAllSpecs()<CR>
