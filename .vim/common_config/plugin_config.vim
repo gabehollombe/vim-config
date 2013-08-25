@@ -26,19 +26,19 @@
   Bundle "git://github.com/wavded/vim-stylus.git"
   " Bundle git://github.com/skammer/vim-css-color.git
   " Use Aaron Baker's Fork to add SASS/SCSS color highlighting
-  Bundle "git@github.com:bakis2011/vim-css-color.git"
+  " Bundle "git@github.com:bakis2011/vim-css-color.git"
 
 " CtrlP - with FuzzyFinder compatible keymaps
   Bundle "git://github.com/kien/ctrlp.vim.git"
-    nnoremap <Leader>b :<C-U>CtrlPBuffer<CR>
-    nnoremap <Leader>t :<C-U>CtrlP<CR>
-    nnoremap <Leader>T :<C-U>CtrlPTag<CR>
-    let g:ctrlp_prompt_mappings = {
-        \ 'PrtSelectMove("j")':   ['<down>'],
-        \ 'PrtSelectMove("k")':   ['<up>'],
-        \ 'AcceptSelection("h")': ['<c-j>'],
-        \ 'AcceptSelection("v")': ['<c-k>', '<RightMouse>'],
-        \ }
+    " nnoremap <Leader>b :<C-U>CtrlPBuffer<CR>
+    " nnoremap <Leader>t :<C-U>CtrlP<CR>
+    " nnoremap <Leader>T :<C-U>CtrlPTag<CR>
+    "let g:ctrlp_prompt_mappings = {
+    "    \ 'PrtSelectMove("j")':   ['<down>'],
+    "    \ 'PrtSelectMove("k")':   ['<up>'],
+    "    \ 'AcceptSelection("h")': ['<c-j>'],
+    "    \ 'AcceptSelection("v")': ['<c-k>', '<RightMouse>'],
+    "    \ }
     " respect the .gitignore
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 
@@ -129,9 +129,9 @@
 " NERDTree for project drawer
   Bundle "git://github.com/scrooloose/nerdtree.git"
     let NERDTreeHijackNetrw = 0
-
     nmap gt :NERDTreeToggle<CR>
     nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
+    nmap <Leader>f :NERDTreeFind<CR>
 
 
 " Tabular for aligning text
@@ -226,11 +226,33 @@
   Bundle "git://github.com/digitaltoad/vim-jade.git"
   autocmd BufNewFile,BufRead *.jade set filetype=jade
 
-" Easy async RSpec running
-Bundle 'thoughtbot/vim-rspec'
-Bundle "git://github.com/tpope/vim-dispatch.git"
-let g:rspec_command = "Dispatch rspec --format=progress --no-profile {spec}"
-nmap <Leader>rc :wa<CR> :call RunCurrentSpecFile()<CR>
-nmap <Leader>rn :wa<CR> :call RunNearestSpec()<CR>
-nmap <Leader>rl :wa<CR> :call RunLastSpec()<CR>
-nmap <Leader>ra :wa<CR> :call RunAllSpecs()<CR>
+" Refactoring
+  Bundle "https://github.com/ecomba/vim-ruby-refactoring"
+  
+" Easy RSpec running
+  Bundle 'thoughtbot/vim-rspec'
+  " let g:rspec_command = "!spring rspec --no-profile {spec}"
+  " let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+  let g:rspec_command = 'call VimuxRunCommand("spring rspec {spec}\n")'
+  nmap <Leader>rf :wa<CR> :call RunCurrentSpecFile()<CR>
+  nmap <Leader>rn :wa<CR>:call RunNearestSpec()<CR>
+  nmap <Leader>rl :wa<CR> :call RunLastSpec()<CR>
+  nmap <C-\>:wa<CR> :call RunLastSpec()<CR>
+  nmap <Leader>ra :wa<CR> :call RunAllSpecs()<CR>
+
+
+" Tmux integration
+"  Bundle 'jgdavey/tslime.vim'
+  Bundle 'benmills/vimux'
+  nmap <Leader>vi :VimuxInspectRunner<CR>
+
+" Tmux
+  Bundle 'christoomey/vim-tmux-navigator'
+
+" Set the cursor to a vertical line in insert mode and a solid block in command mode
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  " Upon hitting escape to change modes, send successive move-left and move-right commands to immediately redraw the cursor
+  inoremap <special> <Esc> <Esc>hl
+  " don't blink the cursor
+  set guicursor+=i:blinkwait0
