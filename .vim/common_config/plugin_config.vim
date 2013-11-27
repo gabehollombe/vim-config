@@ -245,6 +245,11 @@
 "  Bundle 'jgdavey/tslime.vim'
   Bundle 'benmills/vimux'
   nmap <Leader>vi :VimuxInspectRunner<CR>
+  function! VimuxZoomRunner()
+    call VimuxInspectRunner()
+    call system("tmux resize-pane -Z")
+  endfunction
+  nmap <Leader>vv :call VimuxZoomRunner()<CR>
 
 " Tmux
   Bundle 'christoomey/vim-tmux-navigator'
