@@ -228,7 +228,7 @@
 
 " Refactoring
   Bundle "https://github.com/ecomba/vim-ruby-refactoring"
-  
+
 " Easy RSpec running
   Bundle 'thoughtbot/vim-rspec'
   " let g:rspec_command = "!spring rspec --no-profile {spec}"
@@ -242,7 +242,6 @@
 
 
 " Tmux integration
-"  Bundle 'jgdavey/tslime.vim'
   Bundle 'benmills/vimux'
   nmap <Leader>vi :VimuxInspectRunner<CR>
   function! VimuxZoomRunner()
@@ -254,10 +253,22 @@
 " Tmux
   Bundle 'christoomey/vim-tmux-navigator'
 
-" Set the cursor to a vertical line in insert mode and a solid block in command mode
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  " Upon hitting escape to change modes, send successive move-left and move-right commands to immediately redraw the cursor
-  inoremap <special> <Esc> <Esc>hl
-  " don't blink the cursor
-  set guicursor+=i:blinkwait0
+" In Tmux Set the cursor to a vertical line in insert mode and a solid block in command mode
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    " Upon hitting escape to change modes, send successive move-left and move-right commands to immediately redraw the cursor
+    inoremap <special> <Esc> <Esc>hl
+    " don't blink the cursor
+    set guicursor+=i:blinkwait0
+  endif
+
+" Drag visual selections easily
+  Bundle 'gavinbeatty/dragvisuals.vim'
+  vmap  <expr>  H  DVB_Drag('left')
+  vmap  <expr>  L  DVB_Drag('right')
+  vmap  <expr>  J  DVB_Drag('down')
+  vmap  <expr>  K  DVB_Drag('up')
+  vmap  <expr>  D  DVB_Duplicate()
+  " Remove any introduced trailing whitespace after moving...
+  let g:DVB_TrimWS = 1
