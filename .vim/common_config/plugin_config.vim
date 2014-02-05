@@ -30,31 +30,13 @@
 
 " CtrlP - with FuzzyFinder compatible keymaps
   Bundle "git://github.com/kien/ctrlp.vim.git"
-    " nnoremap <Leader>b :<C-U>CtrlPBuffer<CR>
-    " nnoremap <Leader>t :<C-U>CtrlP<CR>
-    " nnoremap <Leader>T :<C-U>CtrlPTag<CR>
-    "let g:ctrlp_prompt_mappings = {
-    "    \ 'PrtSelectMove("j")':   ['<down>'],
-    "    \ 'PrtSelectMove("k")':   ['<up>'],
-    "    \ 'AcceptSelection("h")': ['<c-j>'],
-    "    \ 'AcceptSelection("v")': ['<c-k>', '<RightMouse>'],
-    "    \ }
     " respect the .gitignore
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
-
-" Compile and deploy Arduino (*.pde) sketches directly from Vim
-  Bundle "git://github.com/smerrill/vim-arduino.git"
-    au BufNewFile,BufRead *.pde set filetype=arduino
-    au BufNewFile,BufRead *.ino set filetype=arduino
 
 " Mustache
   Bundle "git://github.com/juvenn/mustache.vim.git"
     " Copied from the plugin; not sure why it isn't working normally
     au BufNewFile,BufRead *.mustache,*.handlebars,*.hbs set filetype=mustache
-
-" Slim
-  Bundle "git://github.com/slim-template/vim-slim.git"
-    au BufNewFile,BufRead *.slim set filetype=slim
 
 " Less
   Bundle "git://github.com/groenewege/vim-less.git"
@@ -72,16 +54,6 @@
   Bundle "git://github.com/kchmck/vim-coffee-script.git"
     au BufNewFile,BufRead *.coffee set filetype=coffee
 
-
-" ACK
-" Bundle "git://github.com/mileszs/ack.vim.git"
-"   nmap g/ :Ack!<space>
-"   nmap g* :Ack! -w <C-R><C-W><space>
-"   nmap ga :AckAdd!<space>
-"   nmap gn :cnext<CR>
-"   nmap gp :cprev<CR>
-"   nmap gq :ccl<CR>
-"   nmap gl :cwindow<CR>
 
 " AG aka The Silver Searcher
   Bundle 'git://github.com/rking/ag.vim.git'
@@ -101,17 +73,6 @@
     map <Leader>. :TagbarToggle<CR>
 
 
-" Ruby focused unit test (wrapped in an if-loaded because it doesn't like
-" being loaded twice)
-  if !exists(':RunRubyFocusedUnitTest')
-    Bundle "git://github.com/drewolson/ruby_focused_unit_test_vim.git"
-      nmap <Leader>ra :wa<CR> :RunAllRubyTests<CR>
-      nmap <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
-      nmap <Leader>rf :wa<CR> :RunRubyFocusedUnitTest<CR>
-      nmap <Leader>rl :wa<CR> :RunLastRubyTest<CR>
-  endif
-
-
 " Markdown syntax highlighting
   Bundle "git://github.com/tpope/vim-markdown.git"
     augroup mkd
@@ -129,10 +90,7 @@
 " NERDTree for project drawer
   Bundle "git://github.com/scrooloose/nerdtree.git"
     let NERDTreeHijackNetrw = 0
-    nmap gt :NERDTreeToggle<CR>
     nmap g :NERDTree \| NERDTreeToggle \| NERDTreeFind<CR>
-    nmap <Leader>f :NERDTreeFind<CR>
-
 
 " Tabular for aligning text
   Bundle "git://github.com/godlygeek/tabular.git"
@@ -178,18 +136,6 @@
                                \ 'active_filetypes': [],
                                \ 'passive_filetypes': ['haml','scss','sass'] }
 
-
-" gist-vim for quickly creating gists
-  Bundle "git://github.com/mattn/webapi-vim.git"
-  Bundle "git://github.com/mattn/gist-vim.git"
-    if has("mac")
-      let g:gist_clip_command = 'pbcopy'
-    elseif has("unix")
-      let g:gist_clip_command = 'xclip -selection clipboard'
-    endif
-
-    let g:gist_detect_filetype = 1
-    let g:gist_open_browser_after_post = 1
 
 
 " gundo for awesome undo tree visualization
