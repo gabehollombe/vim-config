@@ -163,9 +163,18 @@
     " = to surround with output erb tag
     let g:surround_61 = "<%= \r %>"
 
-" Clojure Highlighting"
-  Bundle "https://github.com/vim-scripts/VimClojure.git"
+
+" Clojure"
+  Bundle 'guns/vim-clojure-static'
+  " Bundle "https://github.com/vim-scripts/VimClojure.git"
   autocmd BufNewFile,BufRead *.clj set filetype=clojure
+
+  Bundle 'tpope/vim-fireplace'
+
+  " Bundle 'paredit.vim'
+  " autocmd BufNewFile,BufRead *.clj let g:paredit_mode=1
+  " let g:paredit_shortmaps=1
+
 
 
 " Jade Highlighting"
