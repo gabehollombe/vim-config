@@ -73,3 +73,10 @@
 
 " jj for escape
   imap jj <Esc>
+
+" Ctrl-s to save
+" (Requires the following in your terminal 
+" to disable default Ctrl-S functionality):
+" stty -ixon -ixoff
+nnoremap <c-s> :w<CR>
+inoremap <c-s> <c-o>:w<CR>
