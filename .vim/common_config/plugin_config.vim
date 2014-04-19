@@ -27,6 +27,7 @@
   " Bundle git://github.com/skammer/vim-css-color.git
   " Use Aaron Baker's Fork to add SASS/SCSS color highlighting
   " Bundle "git@github.com:bakis2011/vim-css-color.git"
+  Bundle 'flazz/vim-colorschemes'
 
 " CtrlP - with FuzzyFinder compatible keymaps
   Bundle "git://github.com/kien/ctrlp.vim.git"
@@ -130,7 +131,7 @@
 " Syntastic for catching syntax errors on save
   Bundle "git://github.com/scrooloose/syntastic.git"
     let g:syntastic_enable_signs=1
-    let g:syntastic_quiet_warnings=1
+    let g:syntastic_quiet_messages = {'level': 'warnings'}
     " syntastic is too slow for haml and sass
     let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': [],
@@ -184,11 +185,13 @@
 " Refactoring
   Bundle "https://github.com/ecomba/vim-ruby-refactoring"
 
-" Easy RSpec running
-  Bundle 'thoughtbot/vim-rspec'
+" Easy RSpec and Mocha running
+  " Bundle 'thoughtbot/vim-rspec'
+  Bundle 'geekjuice/vim-spec'
   " let g:rspec_command = "!spring rspec --no-profile {spec}"
   " let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-  let g:rspec_command = 'call VimuxRunCommand("spring rspec {spec}\n")'
+  let g:rspec_command = 'call VimuxRunCommand("rspec {spec}\n")'
+  let g:mocha_coffee_command = 'call VimuxRunCommand("NODE_ENV=test mocha --compilers coffee:coffee-script/register {spec}\n")'
   nmap <Leader>rf :wa<CR> :call RunCurrentSpecFile()<CR>
   nmap <Leader>rn :wa<CR>:call RunNearestSpec()<CR>
   nmap <Leader>rl :wa<CR> :call RunLastSpec()<CR>
@@ -227,3 +230,9 @@
   vmap  <expr>  D  DVB_Duplicate()
   " Remove any introduced trailing whitespace after moving...
   let g:DVB_TrimWS = 1
+
+" Yank rink for better yank/delete recall
+" Bundle 'YankRing.vim'
+
+" Abolish for easy case conversions
+Bundle 'abolish.vim'

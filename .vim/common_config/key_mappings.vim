@@ -46,6 +46,9 @@
 " select the lines which were just pasted
   nnoremap vv `[V`]
 
+" toggle paste mode
+set pastetoggle=<F2>
+
 " clean up trailing whitespace
   map <Leader>c :StripTrailingWhitespaces<cr>
 
@@ -74,9 +77,16 @@
 " jj for escape
   imap jj <Esc>
 
+" ; is : in normal mode
+nnoremap ; :
+
 " Ctrl-s to save
-" (Requires the following in your terminal 
+" (Requires the following in your terminal
 " to disable default Ctrl-S functionality):
 " stty -ixon -ixoff
 nnoremap <c-s> :w<CR>
 inoremap <c-s> <c-o>:w<CR>
+
+" Search/Replace word under cursor in current file
+" (complete the new term and hit Enter when done)
+nmap <Leader>r :%s/<c-r><c-w>/
