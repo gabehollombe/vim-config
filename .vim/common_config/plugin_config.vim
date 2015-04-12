@@ -23,7 +23,6 @@
   Bundle "git://github.com/tpope/vim-repeat.git"
   Bundle "git://github.com/vim-scripts/ruby-matchit.git"
   Bundle "git://github.com/wgibbs/vim-irblack.git"
-  Bundle "git://github.com/wavded/vim-stylus.git"
   " Bundle git://github.com/skammer/vim-css-color.git
   " Use Aaron Baker's Fork to add SASS/SCSS color highlighting
   " Bundle "git@github.com:bakis2011/vim-css-color.git"
@@ -172,10 +171,10 @@
 
   Bundle 'tpope/vim-fireplace'
 
-  " Bundle 'paredit.vim'
-  " autocmd BufNewFile,BufRead *.clj let g:paredit_mode=1
-  " let g:paredit_shortmaps=1
-
+  Bundle 'paredit.vim'
+  autocmd BufNewFile,BufRead *.clj let g:paredit_mode=1
+  " let g:paredit_shortmaps = 1
+  "let g:paredit_electric_return = 1
 
 
 " Jade Highlighting"
@@ -190,7 +189,7 @@
   Bundle 'geekjuice/vim-spec'
   " let g:rspec_command = "!spring rspec --no-profile {spec}"
   " let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-  let g:rspec_command = 'call VimuxRunCommand("rspec {spec}\n")'
+  let g:rspec_command = 'call VimuxRunCommand("spring rspec {spec}\n")'
   let g:mocha_coffee_command = 'call VimuxRunCommand("NODE_ENV=test mocha --compilers coffee:coffee-script/register {spec}\n")'
   nmap <Leader>rf :wa<CR> :call RunCurrentSpecFile()<CR>
   nmap <Leader>rn :wa<CR>:call RunNearestSpec()<CR>
@@ -221,6 +220,9 @@
     set guicursor+=i:blinkwait0
   endif
 
+  let g:slime_target = "tmux"
+  Bundle 'git://github.com/jpalardy/vim-slime.git'
+
 " Drag visual selections easily
   Bundle 'gavinbeatty/dragvisuals.vim'
   vmap  <expr>  H  DVB_Drag('left')
@@ -236,3 +238,14 @@
 
 " Abolish for easy case conversions
 Bundle 'abolish.vim'
+
+" Python mode
+Bundle "git://github.com/klen/python-mode.git"
+
+"PyTest
+Bundle "git://github.com:alfredodeza/pytest.vim.git"
+" Pytest
+nmap <silent><Leader>F <Esc>:Pytest file<CR>
+nmap <silent><Leader>f <Esc>:Pytest file<CR>:Pytest first<CR>
+nmap <silent><Leader>M <Esc>:Pytest method<CR>
+nmap <silent><Leader>m <Esc>:Pytest method<CR>:Pytest first<CR>
