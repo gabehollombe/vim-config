@@ -135,6 +135,7 @@
     let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': [],
                                \ 'passive_filetypes': ['haml','scss','sass'] }
+    let g:syntastic_javascript_checkers = ['eslint']
 
 
 
